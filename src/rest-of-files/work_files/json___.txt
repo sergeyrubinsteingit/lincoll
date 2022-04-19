@@ -1,0 +1,39 @@
+ 
+[
+  {  
+    "get_month_name": "Jan",
+    "get_day": "3",
+    "get_weekday": "Thr",
+    "get_year": "2022",
+    "link_name":"DialogHR",
+    "link_url":"https://www.dialog.co.il/high-tech/searchresults/?fieldId=&professions=23565,93909,93911,23662&regions=1,2&skills=&salary=10000,15000&industry=&companySize=0&nearTrain=false",
+    "link_status": "NONE"
+  },
+  { 
+    "get_month_name": "Jan",
+    "get_day": "3",
+    "get_weekday": "Thr",
+    "get_year": "2022",
+    "link_name":"Boxing Helmet",
+    "link_url":"https://www.aliexpress.com/item/32984890302.html?spm=a2g0o.search0304.0.0.2381655dzU51yF&algo_pvid=773f881f-2eed-4e68-8d9f-f6278d5623e4&algo_exp_id=773f881f-2eed-4e68-8d9f-f6278d5623e4-50",
+    "link_status":"NONE"
+  },
+  {  
+    "get_month_name": "Jan",
+    "get_day": "3",
+    "get_weekday": "Thr",
+    "get_year": "2022",
+    "link_name":"Boxing Ball",
+    "link_url":"https://www.aliexpress.com/item/1005003215366858.html?spm=a2g0o.search0304.0.0.2381655dzU51yF&algo_pvid=773f881f-2eed-4e68-8d9f-f6278d5623e4&algo_exp_id=773f881f-2eed-4e68-8d9f-f6278d5623e4-55",
+    "link_status":"NONE"
+  },
+  {   
+    "get_month_name": "Jan",
+    "get_day": "3",
+    "get_weekday": "Thr",
+    "get_year": "2022",
+    "link_name":"Boxing Gloves",
+    "link_url":"https://www.aliexpress.com/item/4000434553950.html?spm=a2g0o.search0304.0.0.2381655dzU51yF&algo_pvid=773f881f-2eed-4e68-8d9f-f6278d5623e4&algo_exp_id=773f881f-2eed-4e68-8d9f-f6278d5623e4-9",
+    "link_status": "NONE"
+  }   
+]

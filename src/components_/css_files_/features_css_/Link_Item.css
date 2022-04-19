@@ -1,0 +1,79 @@
+.link_item_root {
+    /* position: relative; */
+    display: flex;
+    flex-flow: row nowrap;
+    top: 0%;
+    left: 0%;
+    width: 98%;
+    height: 50pt;
+    font: inherit;
+    font-size: 1.5vw;
+    padding: 1%;
+    margin-top: 1vh;
+    background-color: chocolate;
+    z-index: 0;
+}
+
+/* .link_item_root > * {
+} */
+
+.link_entry_date, .link_status_ {
+    /* position: relative; */
+    top: 50%;
+    /* transform: translate(0%, 0%); */
+    height: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+    border-color: gold;
+    display:inline-block; /*For older browsers*/
+    display: flex; /*Allows to center texts i n a div.*/
+    z-index: 1;
+    font-size: 1.5vmin;
+    text-align: center;
+    /* Centering texts in a div: */
+    justify-content: center;
+    align-items: center;
+    /* Shadows: */
+    -moz-box-shadow:    inset 0 0 25px #0000008f;
+    -webkit-box-shadow: inset 0 0 25px #0000008f;
+    box-shadow:         inset 0 0 25px #0000008f;
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.50);
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Blur(PixelRadius=5,MakeShadow=true,ShadowOpacity=0.50)';
+	transform: scale();
+    background-color: rgb(214, 68, 42);
+}
+
+.link_item_title, .link_status_ {
+    text-align: center;
+    margin-left: 1%;
+}
+
+.link_status_ {
+    float: right;
+    width: 10%;
+    cursor: pointer;
+}
+
+.link_item_title {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    border-style: solid;
+    border-width: 0;
+    border-radius: 5px;
+    text-align: center;
+    display:inline-block; /*For older browsers*/
+    display: flex; /*Allows to center texts i n a div.*/
+    /* Centering texts in a div: */
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(173, 118, 62);
+    cursor: pointer;
+}
+
+a {
+    color: azure;
+}

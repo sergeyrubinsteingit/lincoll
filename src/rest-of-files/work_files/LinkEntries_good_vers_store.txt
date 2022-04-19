@@ -1,0 +1,125 @@
+import React, {useState, useEffect} from 'react';
+import LinkItem from './LinkItem';
+import './../../css_files_/App_.css';
+import LinksFilter from './filter_/LinksFilter';
+
+let components_array = [];
+
+function LinkEntries(App_props_) {
+// Brings in data from Json where user info is stored:
+const [link_properties,setData]=useState([]);
+
+const getData=()=>{
+  fetch('user_links.json',
+  {
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }
+  )
+  .then((get_response) => {
+    console.log(get_response)
+    return get_response.json();
+  })
+  .then((render_json) => {
+    console.log(render_json);
+    setData(render_json)
+  });
+}
+useEffect(()=>{ getData() },[]);
+
+///////////////////////////////////////////////////////////////
+
+  // Hook [useState] settings:
+  const [selected_year, SelectYear] = useState('2019');//[useState]
+
+///////////////////////////////////////////////////////////////
+try{
+  for (let i = 0; i < link_properties.length; i++) {
+// Deploys user data into components:
+  components_array.push(
+    <LinkItem key={'LinkBlok-'+i}  ls_date={new Date()}
+    ls_linkname={link_properties[i].item_name}
+    ls_href={link_properties[i].link_to_item}
+    ls_status_={link_properties[i].lnk_status}
+    key={'LinkSet-'+i}
+    /> 
+    ); //[push]
+  }//[for]
+components_array.forEach((elem_)=>{console.log(elem_);});
+
+  // Gets and operates user's input from [LinksFilter] module:
+  const SetFilterByYear = sel_year => {
+    SelectYear(sel_year);
+
+    const year_ = sel_year;
+    console.log('Here\'s a PARENT component');
+    console.log(year_);
+  };
+  return (
+    <div>
+    <LinksFilter selected_yr={selected_year} on_GetSelectedYear={SetFilterByYear} />
+    <div className='link_entries'>
+        {components_array /*Renders all the components*/}
+    </div>  
+    </div>
+  ); // [return]  
+}catch(e){
+  console.log(e);
+}//[try]
+// }//[fn]
+} // [fn]
+
+export default LinkEntries;
+
+
+
+
+
+
+
+
+
+
+// const fetchJson = async () => {
+
+//   try {
+//     xxx_='sss';
+
+//     const fetch_json_list = await fetch(user_links_list, {
+//       headers : { 
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//        }
+//     });
+//     const link_properties = await fetch_json_list.json();
+//     console.log('Inside the function');
+//     console.log(xxx_); 
+//     return link_properties;
+//   } catch (error) {
+//     console.warn(user_links_list.responseText)
+//   }
+
+// };//[fn]
+
+// function LinkEntries(App_props_) {
+//   // fetchJson();
+//   wait (7000);
+//   // Deploys user data into components:
+//   const components_array2 = [];
+//   for (let i = 0; i < link_properties.length; i++) {
+//     components_array2.push(
+//       <LinkItem  ls_date={new Date()}
+//       ls_linkname={link_properties[i].item_name}
+//       ls_href={link_properties[i].link_to_item}
+//       ls_status_={link_properties[i].lnk_status}
+//       /> 
+//     ); //[push]
+//   }//[for]
+//     return (
+//       <div className='link_entries'>
+//           {components_array2 /*Renders all the components*/}
+//       </div>
+//     ); // [return]
+// } // [fn]
