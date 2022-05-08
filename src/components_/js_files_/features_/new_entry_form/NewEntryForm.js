@@ -5,29 +5,29 @@ import EntryInputForm from "./EntryInputForm";
 let temp_cnt_ = 11;
 
 const NewEntryForm = (new_entry_prop) => {
-/////////////////////A Data from Json file ///////////////////// 
-let [link_properties, setData]=useState([]);
-    const getData=()=>{
-    fetch('user_links.json',
-    {
-        headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-        }
-    }
-    )
-    .then((get_response) => {
-        console.log(get_response)
-        return get_response.json();
-    })
-    .then((render_json) => {
-        console.log('render_json:');
-        console.log(render_json);
-        setData(render_json);
-    });
+    /////////////////////A Data from Json file ///////////////////// 
+    let [link_properties, setData] = useState([]);
+    const getData = () => {
+        fetch('user_links.json',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }
+        )
+            .then((get_response) => {
+                console.log(get_response)
+                return get_response.json();
+            })
+            .then((render_json) => {
+                console.log('render_json:');
+                console.log(render_json);
+                setData(render_json);
+            });
     }//[fn]
-    useEffect(()=>{ getData() },[]);
-////////////////////////////////////////////////////////////
+    useEffect(() => { getData() }, []);
+    ////////////////////////////////////////////////////////////
 
     console.log('link_properties: ');
     console.log(link_properties);
@@ -51,7 +51,6 @@ let [link_properties, setData]=useState([]);
         console.log('#############################################:');
         console.log(links_length);
         const entry_data = {
-            // key: 'new_link_' + links_length.toString(),
             key: 'new_link_' + temp_cnt_,
             ...new_entry_data,
         } //[fn]

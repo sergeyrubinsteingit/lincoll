@@ -12,38 +12,18 @@ import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEn
 //            "lnk_status": "NONE",
 //        },
 //    ];
-
+///////////
 const App = (props) => {
-    ///////////
-    let linksFromJson = [];
-    React.useEffect(() => {
-        fetch('./user_links.json',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            }/*headers*/)
-            .then((res) => res.json()).then((data) => {
-                setData(data);
-               let linksFromJson = [...data]
-            })
-    }, [])//[useEffect]
-
-    console.log('------------------------------------------linksFromJson -----------------------------------');
-    console.log(linksFromJson);
-////////////////////////////////////////////////////////////////////////////////
     //// brings in data from json where user info is stored:
-    let [link_properties, setData] = useState([linksFromJson]);
+    let [link_properties, setData] = useState([]);
 
     const addLinkHandler = add_link => {
         // link_properties = [];
         setData((prevLinks_) => {
             return [add_link, ...prevLinks_]
         });//[updateLinks]
-        console.log('--- In App.js:  add_link  ---');
+        console.log('--- In App.js ---');
         console.log(add_link);
-        console.log('--- In App.js: link_properties   ---');
         console.log(link_properties);
     }//[fn]
 

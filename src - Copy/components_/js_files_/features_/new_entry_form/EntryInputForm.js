@@ -5,19 +5,19 @@ import './EntryInputForm_.css';
 
 const EntryInputForm = (props) => {
     let [jsonData, setData] = useState([{}]);
-    //let oper_array = props.items_;
-    //React.useEffect(() => {
-    //    fetch('./user_links.json',
-    //        {
-    //            headers: {
-    //                'Content-Type': 'application/json',
-    //                'Accept': 'application/json'
-    //            }
-    //        }/*headers*/)
-    //        .then((res) => res.json()).then((data) => {
-    //            setData(data)
-    //        })
-    //}, [])//[useEffect]
+    let oper_array = props.items_;
+    React.useEffect(() => {
+        fetch('./user_links.json',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }/*headers*/)
+            .then((res) => res.json()).then((data) => {
+                setData(data)
+            })
+    }, [])//[useEffect]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
     function Add_toJson(new_link_) {
@@ -60,13 +60,12 @@ const EntryInputForm = (props) => {
         let sel_date = new Date(user_input.link_date).toString();
             if (sel_date.includes('Invalid')) {
                 sel_date = ' ';
-        }//[if]
-
+            }//[if]
         link_data_set = {
             link_date: sel_date,
             link_name: user_input.link_name,
             link_url: user_input.link_url,
-            link_status: 'NONE'
+            link_status: 'NONE',
         };//[var]
     // Passes new data up to the parent module:
         props.on_SaveNewEntry(link_data_set);

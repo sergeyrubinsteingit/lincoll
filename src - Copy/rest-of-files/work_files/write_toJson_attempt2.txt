@@ -1,0 +1,4 @@
+        const req_ = require(user_links_);
+        req_.writeFile('./user_links.json', JSON.stringify(new_link_),
+            err_ => {console.log('FAILED: ' + err_)}
+        );//[writeFile]
