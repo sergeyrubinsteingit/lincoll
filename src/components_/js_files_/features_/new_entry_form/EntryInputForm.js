@@ -19,25 +19,6 @@ const EntryInputForm = (props) => {
     //        })
     //}, [])//[useEffect]
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-    function Add_toJson(new_link_) {
-        let updatedArray = [...jsonData, new_link_];
-        console.log('(((((((((((((    updatedArray    ))))))))))');
-        console.log(updatedArray);
-        let http_request = new XMLHttpRequest(), json_content = updatedArray, json_url = 'user_links.json';
-        console.log('(((((((((((((    json_content    ))))))))))');
-        console.log(json_content);
-        http_request.open('PUT', json_url, false);
-        http_request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        http_request.setRequestHeader('Accept', 'application/json');
-        json_content = JSON.stringify(updatedArray, null, 2);
-                console.log('/////////////////    json_content    \\\\\\\\\\\\\\\'');
-                console.log(json_content);
-                http_request.send(json_content);
-    };//[fn Add_toJson]
-
-
-
     const [user_input, setNewLink] = useState(
     {
         link_date: '',
@@ -57,7 +38,7 @@ const EntryInputForm = (props) => {
 
     const SubmitHandler = (event) => { // Submits the form values.
         event.preventDefault();
-        let sel_date = new Date(user_input.link_date).toString();
+        let sel_date = new Date(user_input.link_date).toDateString();
             if (sel_date.includes('Invalid')) {
                 sel_date = ' ';
         }//[if]
@@ -71,7 +52,7 @@ const EntryInputForm = (props) => {
     // Passes new data up to the parent module:
         props.on_SaveNewEntry(link_data_set);
     // Writes new entry in JSON:
-    Add_toJson(link_data_set);
+    //Add_toJson(link_data_set);
     // Clears the values in the [user_input] var:
         setNewLink({
             link_date: '',
