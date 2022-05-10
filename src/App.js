@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import React, { useState, useEffect } from 'react';
 import './components_/css_files_/App_.css';
 import LinkEntries from './components_/js_files_/features_/LinkEntries';
@@ -14,8 +15,11 @@ import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEn
 //    ];
 
 const App = (props) => {
-    ///////////
     let linksFromJson = [];
+    ////////////////////////////////////////////////////////////////////////////////
+    //// brings in data from json where user info is stored:
+    let [link_properties, setData] = useState([]);
+
     React.useEffect(() => {
         fetch('./user_links.json',
             {
@@ -24,28 +28,30 @@ const App = (props) => {
                     'Accept': 'application/json'
                 }
             }/*headers*/)
-            .then((res) => res.json()).then((data) => {
-                setData(data);
-               let linksFromJson = [...data]
+            .then((res) => res.json())
+            .then((data) => {
+                linksFromJson = [...data];
+                //setTimeout(() => {
+                    setData(linksFromJson);
+                //}, 5000);//[setTimeout]
+                console.log('------------------------------------------linksFromJson -----------------------------------');
+                console.log(data);
             })
     }, [])//[useEffect]
 
-    console.log('------------------------------------------linksFromJson -----------------------------------');
+    console.log(':::::::::::::::::    linksFromJson     :::::::::::::::::');
     console.log(linksFromJson);
-////////////////////////////////////////////////////////////////////////////////
-    //// brings in data from json where user info is stored:
-    let [link_properties, setData] = useState([linksFromJson]);
 
     const addLinkHandler = add_link => {
-        // link_properties = [];
         setData((prevLinks_) => {
             return [add_link, ...prevLinks_]
         });//[updateLinks]
+
         console.log('--- In App.js:  add_link  ---');
         console.log(add_link);
         console.log('--- In App.js: link_properties   ---');
         console.log(link_properties);
-    }//[fn]
+    }//[addLinkHandler]
 
     return React.createElement('div', { className: App }, /*Wrapper div*/
             React.createElement('h1', {}, 'Links Collector'), /* The Header */
@@ -53,7 +59,8 @@ const App = (props) => {
             React.createElement(LinkEntries, { items_: link_properties }), /* A component populating entries */
         );// [ React.createElement: Wrapper div ]
 
-} //[fn]
+} //[App]                                           
+
 export default App;
 
 // The code below is correct; it is a modern version of the same solution as one above.
