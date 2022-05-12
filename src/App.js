@@ -53,11 +53,17 @@ const App = (props) => {
         console.log(link_properties);
     }//[addLinkHandler]
 
+    const arrayHandler = newArray => {
+        setData(() => {
+            return [...newArray]
+        });
+    }//[arrayHandler]
+
     return React.createElement('div', { className: App }, /*Wrapper div*/
-            React.createElement('h1', {}, 'Links Collector'), /* The Header */
-            React.createElement(NewEntryForm, { on_AddLink: addLinkHandler }), /* A component holding input forms */
-            React.createElement(LinkEntries, { items_: link_properties }), /* A component populating entries */
-        );// [ React.createElement: Wrapper div ]
+        React.createElement('h1', {}, 'Links Collector'), /* The Header */
+        React.createElement(NewEntryForm, { on_AddLink: addLinkHandler }), /* A component holding input forms */
+        React.createElement(LinkEntries, { items_: link_properties, on_ChangeArray: arrayHandler }), /* A component populating entries */
+    );// [ React.createElement: Wrapper div ]
 
 } //[App]                                           
 

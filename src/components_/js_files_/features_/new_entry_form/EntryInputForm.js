@@ -5,19 +5,6 @@ import './EntryInputForm_.css';
 
 const EntryInputForm = (props) => {
     let [jsonData, setData] = useState([{}]);
-    //let oper_array = props.items_;
-    //React.useEffect(() => {
-    //    fetch('./user_links.json',
-    //        {
-    //            headers: {
-    //                'Content-Type': 'application/json',
-    //                'Accept': 'application/json'
-    //            }
-    //        }/*headers*/)
-    //        .then((res) => res.json()).then((data) => {
-    //            setData(data)
-    //        })
-    //}, [])//[useEffect]
 
     const [user_input, setNewLink] = useState(
     {
@@ -38,9 +25,9 @@ const EntryInputForm = (props) => {
 
     const SubmitHandler = (event) => { // Submits the form values.
         event.preventDefault();
-        let sel_date = new Date(user_input.link_date).toDateString();
+        let sel_date = new Date(user_input.link_date).toString();
             if (sel_date.includes('Invalid')) {
-                sel_date = ' ';
+                sel_date = new Date().toString();
         }//[if]
 
         link_data_set = {

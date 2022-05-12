@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LinkItem from './LinkItem';
 import './../../css_files_/App_.css';
 import LinksFilter from './filter_/LinksFilter';
@@ -9,15 +9,15 @@ let oper_array_2 = [];
 function LinkEntries(props) {
     // Selected year from [LinksFilter] module:
     const [selected_year, SelectYear] = useState('All years');//[hook]
-    
+    // Creates an operative array
+    oper_array = props.items_;
+    console.log('~~~~~~~ oper_array ~~~~~~~');
+    console.log(oper_array);
+    const [currentArray, setArray] = useState();//[hook]
+
     const SetFilterByYear = (sel_year) => {
 
         try {
-
-            // Creates an operative array
-            oper_array = props.items_;
-            console.log('~~~~~~~ oper_array ~~~~~~~');
-            console.log(oper_array);
 
             if (props.items_ !== null || props.items_ !== ' ') {
                 oper_array_2.push(props.items_);
@@ -32,25 +32,20 @@ function LinkEntries(props) {
             console.log('%%%%%%%%%%%%  oper_array_2  %%%%%%%%%%%%');
             console.log(oper_array_2);
 
-            if (sel_year === 'All years') {
+            if (sel_year === 'All years') { /* Populates full array*/
                 oper_array = [];
                 oper_array = [...oper_array_2];
 
-                console.log('!!!!!!!!!!  All years === oper_array !!!!!!!!!!');
-                console.log(oper_array);
-
+                props.on_ChangeArray(oper_array);
             } else {
                 oper_array = [];
                 for (let i = 0; i < oper_array_2.length; i++) {
                     if (oper_array_2[i].link_date.includes(sel_year)) {
                         oper_array.push(oper_array_2[i]);
+                    }///[if]
+                }///[for]
 
-                        console.log(')$$$$$$$$$$$$$   FOR ' + sel_year + ' === oper_array   $$$$$$$$$$$$$(');
-                        console.log(oper_array);
-                    }/////////////////
-                }////////////////
-                console.log('))))))))))))))))))))))  YEAR ' + sel_year + ' === oper_array ((((((((((((((((((((((((((');
-                console.log(oper_array);
+                props.on_ChangeArray(oper_array);
             }//[if else 1]
 
             console.log('!!!!!!!!!!      checking the array by mapping it     !!!!!!!!!!');
@@ -58,11 +53,12 @@ function LinkEntries(props) {
             console.log('******** solution 1 ********');
             console.log('******** oper_array ********');
             console.log(oper_array);
-
         } catch (e) {
             console.log(e);
         };//[try]
+        setArray(oper_array);
         SelectYear(sel_year);
+        return oper_array;
     };//[fn]
 
     return (
@@ -79,7 +75,7 @@ function LinkEntries(props) {
                 }
             </div>
         </div>
-        ); // [return]  
+    ); // [return]  
 } // [fn]
 
 export default LinkEntries;
