@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './components_/css_files_/App_.css';
 import LinkEntries from './components_/js_files_/features_/LinkEntries';
 import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEntryForm';
@@ -16,8 +15,7 @@ import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEn
 
 const App = (props) => {
     let linksFromJson = [];
-    ////////////////////////////////////////////////////////////////////////////////
-    //// brings in data from json where user info is stored:
+    //// Brings in data from json where user info is stored:
     let [link_properties, setData] = useState([]);
 
     React.useEffect(() => {
@@ -31,29 +29,17 @@ const App = (props) => {
             .then((res) => res.json())
             .then((data) => {
                 linksFromJson = [...data];
-                //setTimeout(() => {
-                    setData(linksFromJson);
-                //}, 5000);//[setTimeout]
-                console.log('------------------------------------------linksFromJson -----------------------------------');
-                console.log(data);
+                setData(linksFromJson);
             })
     }, [])//[useEffect]
 
-    console.log(':::::::::::::::::    linksFromJson     :::::::::::::::::');
-    console.log(linksFromJson);
-
-    const addLinkHandler = add_link => {
+    const addLinkHandler = add_link => {/* Adds new link entry to list of the links*/
         setData((prevLinks_) => {
             return [add_link, ...prevLinks_]
         });//[updateLinks]
-
-        console.log('--- In App.js:  add_link  ---');
-        console.log(add_link);
-        console.log('--- In App.js: link_properties   ---');
-        console.log(link_properties);
     }//[addLinkHandler]
 
-    const arrayHandler = newArray => {
+    const arrayHandler = newArray => {  /*Provides display of selected links on change in LinkEntries.js*/
         setData(() => {
             return [...newArray]
         });

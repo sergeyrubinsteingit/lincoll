@@ -64,17 +64,17 @@ let [link_properties, setData]=useState([]);
     console.log(links_length);
     //////////////////////////////////////////////////////////////////////////
     // Receives new entry data:
-    const saveNewEntryHandler = (new_entry_data) => {
+    const saveNewEntryHandler = (newEntryDataSet) => {
 
         links_length++;
         temp_cnt_++;
         console.log('#############################################:');
         console.log(links_length);
-        const entry_data = {
+        const entryDataSet = {
             key: 'new_link_' + temp_cnt_,
-            ...new_entry_data,
+            ...newEntryDataSet,
         } //[fn]
-        props.on_AddLink(entry_data);
+        props.on_AddLink(entryDataSet);
     };//[fn]
 
     return (

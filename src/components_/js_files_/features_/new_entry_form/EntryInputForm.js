@@ -1,10 +1,9 @@
-// import React from "react";
 import React, { useState } from "react";
 import './EntryInputForm_.css';
-// import  user_links_ from './../json_list/user_links.json';
+
+// This module is to get a new link input from user
 
 const EntryInputForm = (props) => {
-    let [jsonData, setData] = useState([{}]);
 
     const [user_input, setNewLink] = useState(
     {
@@ -13,7 +12,7 @@ const EntryInputForm = (props) => {
         link_url: '',
     }); //[useState]
 
-    const LinkDataHandler = (event, entry) => {
+    const LinkDataHandler = (event, entry) => {   /*Creates new link entry*/
         setNewLink((prevState) => {
             return ({...prevState, 
                 [entry]: event.target.value, 

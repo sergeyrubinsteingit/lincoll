@@ -1,43 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import LinkItem from './LinkItem';
 import './../../css_files_/App_.css';
 import LinksFilter from './filter_/LinksFilter';
 import './../../../App';
+
 let oper_array = [];
 let oper_array_2 = [];
 
-function LinkEntries(props) {
-    // Selected year from [LinksFilter] module:
-    const [selected_year, SelectYear] = useState('All years');//[hook]
-    // Creates an operative array
-    oper_array = props.items_;
-    console.log('~~~~~~~ oper_array ~~~~~~~');
-    console.log(oper_array);
-    const [currentArray, setArray] = useState();//[hook]
+// This module collects all the link entries and arrages them on call from NewEntryForm.js
 
-    const SetFilterByYear = (sel_year) => {
+function LinkEntries(props) {
+
+    const [selected_year, SelectYear] = useState('All years');//[hook]
+ 
+    oper_array = props.items_; /*Creates an operative array*/
+
+    const SetFilterByYear = (sel_year) => {  /* Displays link selection by years*/
 
         try {
 
             if (props.items_ !== null || props.items_ !== ' ') {
-                oper_array_2.push(props.items_);
+                oper_array_2.push(props.items_); /*Pushes all the items in process to array */
             };
 
-            oper_array_2 = oper_array_2.flat(3);
-            oper_array_2 = [...new Set(oper_array_2)];
-
-            console.log('%%%%%%%%%%%%  sel_year  %%%%%%%%%%%%');
-            console.log(sel_year);
-
-            console.log('%%%%%%%%%%%%  oper_array_2  %%%%%%%%%%%%');
-            console.log(oper_array_2);
+            oper_array_2 = oper_array_2.flat(3); /*Extracts nested styles*/
+            oper_array_2 = [...new Set(oper_array_2)];    /*Removes duplicates*/
 
             if (sel_year === 'All years') { /* Populates full array*/
                 oper_array = [];
                 oper_array = [...oper_array_2];
 
                 props.on_ChangeArray(oper_array);
-            } else {
+            } else {/* Populates an array with selected entries*/
                 oper_array = [];
                 for (let i = 0; i < oper_array_2.length; i++) {
                     if (oper_array_2[i].link_date.includes(sel_year)) {
@@ -45,7 +39,7 @@ function LinkEntries(props) {
                     }///[if]
                 }///[for]
 
-                props.on_ChangeArray(oper_array);
+                props.on_ChangeArray(oper_array);  /* Passes changes on to [App.js] */
             }//[if else 1]
 
             console.log('!!!!!!!!!!      checking the array by mapping it     !!!!!!!!!!');
@@ -56,8 +50,7 @@ function LinkEntries(props) {
         } catch (e) {
             console.log(e);
         };//[try]
-        setArray(oper_array);
-        SelectYear(sel_year);
+        SelectYear(sel_year);  /*Sets hook*/
         return oper_array;
     };//[fn]
 
@@ -91,13 +84,3 @@ export default LinkEntries;
         //const filteredArr = Object.values(oper_array).filter(linkEntry => {
         //    return linkEntry.getFullYear().toString() === selected_year;
         //});
-
-    //const SetFilterByYear = (sel_year) => {
-    //    SelectYear(sel_year);
-    //    oper_array.push(props.items_);
-    //    oper_array = props.items_.filter(linkEntry => {
-    //        setTimeout(() => {
-    //            return linkEntry.link_date.getFullYear().toString() === selected_year;
-    //        }, 10000);
-    //    });
-    //}
