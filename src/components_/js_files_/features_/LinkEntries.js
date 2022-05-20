@@ -30,7 +30,7 @@ function LinkEntries(props) {
                 oper_array = [];
                 oper_array = [...oper_array_2];
 
-                props.on_ChangeArray(oper_array);
+                props.on_ChangeArray(oper_array);  /* Passes changes on to [App.js] */
             } else {/* Populates an array with selected entries*/
                 oper_array = [];
                 for (let i = 0; i < oper_array_2.length; i++) {
@@ -38,7 +38,6 @@ function LinkEntries(props) {
                         oper_array.push(oper_array_2[i]);
                     }///[if]
                 }///[for]
-
                 props.on_ChangeArray(oper_array);  /* Passes changes on to [App.js] */
             }//[if else 1]
 
