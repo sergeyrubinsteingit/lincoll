@@ -14,7 +14,7 @@ function LinkStatus(props){
         setStatus_(current_status_);
         return current_status_;
     } ;//[fn]
-    console.log('current_status_ = ' + current_status_);
+    //console.log('current_status_ = ' + current_status_);
     return(
         <div className='link_status_' onClick={StatusHandler}>{lnk_status_}</div>
     );// [Return]

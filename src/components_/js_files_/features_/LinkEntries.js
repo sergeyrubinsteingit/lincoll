@@ -58,12 +58,16 @@ function LinkEntries(props) {
             <LinksFilter selected_yr={selected_year} on_GetSelectedYear={SetFilterByYear} />
             <div className='link_entries' /*Contains all link elements*/>
                 {
-                    oper_array.map(new_entry => <LinkItem  /*Mapping LinkItem properties*/
-                        key={new_entry.key}
-                        link_date={new_entry.link_date}
-                        link_name={new_entry.link_name}
-                        link_url={new_entry.link_url}
-                        link_status={new_entry.link_status} />)
+                    oper_array.length === 0 ? (    /*In case there is no data to display:*/
+                        <center><p style={{ fontSize: '2em', color:'darkred' }}>No links for selected date</p></center>
+                    ) : (
+                        oper_array.map(new_entry => <LinkItem  /*Mapping LinkItem properties*/
+                            key={new_entry.key}
+                            link_date={new_entry.link_date}
+                            link_name={new_entry.link_name}
+                            link_url={new_entry.link_url}
+                            link_status={new_entry.link_status} />)  //[map]
+                    )   // [if]
                 }
             </div>
         </div>

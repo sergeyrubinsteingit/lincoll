@@ -37,7 +37,8 @@ const EntryInputForm = (props) => {
         };//[var]
     // Passes new data up to the parent module:
         props.on_SaveNewEntry(link_data_set);
-    // Writes new entry in JSON:
+        // Writes new entry in JSON:
+        props.on_NewEntrySet(link_data_set);
     //Add_toJson(link_data_set);
     // Clears the values in the [user_input] var:
         setNewLink({

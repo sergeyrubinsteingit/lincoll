@@ -14,10 +14,10 @@ import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEn
 //    ];
 
 const App = (props) => {
-    let linksFromJson = [];
     let [link_properties, setData] = useState([]);
 
     React.useEffect(() => {     /* Brings in data from json where user info is stored:*/
+        let linksFromJson = [];
         fetch('./user_links.json',
             {
                 headers: {
