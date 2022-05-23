@@ -3,7 +3,7 @@
     display: block;
     flex-flow: row nowrap;
     top: 0%;
-    left:calc(20vw - 5px);
+    /*left:calc(20vw - 5px);*/
     width: 30vw;
     min-width: 500px;
     height: 35vh;
@@ -46,17 +46,34 @@
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: yellow;
   }
   
   .App-link {
     color: #61dafb;
   }
 
-  h1 {
+h1 {
     /* Shadows: */
-    text-shadow: 2px 2px #361010cb;
-    transform: scale();
+    text-shadow: 2px 2px 9px rgba(0, 0, 0, 0.5);
     text-align: center;
-  }
+    font-size: calc(24px + 3em);
+    color: rgb(199, 180, 135);
+}
+
+.app_wrapper_div {
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+.links_display_field {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
   

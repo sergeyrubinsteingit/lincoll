@@ -1,13 +1,11 @@
 body {
-  margin: 0;
-  padding: 0;
-  background-color: rgb(182, 145, 66);
-  color: azure;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(173, 150, 102);
+    color: azure;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
@@ -16,8 +14,11 @@ code {
 }
 
 #root {
-  /* background-color: brown; */
-  /* text-align: center; */
+   display: flex;
+   /*background-color: brown;*/ 
+   text-align: center; 
+   align-items: center;
+   justify-content: center;
 }
 
 

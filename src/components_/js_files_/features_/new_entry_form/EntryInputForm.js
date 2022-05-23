@@ -70,9 +70,12 @@ const EntryInputForm = (props) => {
                         value={user_input.link_date} min='2021-12-01' max='2023-12-31'
                         onChange={(event)=>LinkDataHandler(event, 'link_date')} />
                     </div>
-                        <button type="submit">Add</button>
-                </div>             
-            </div> 
+                    <div className="form_buttons">
+                        <button type="submit" onClick={props.on_addLinksDone}>Add</button>
+                        <button type="reset" onClick={props.on_addLinksDone}>Cancel</button>
+                    </div>
+                </div>
+            </div>
         </form>
     ); //[return]
 }; //[fn]

@@ -1,7 +1,7 @@
 .links_filter {
     position: relative;
     top: 0;
-    left:calc(20vw - 5px);
+    /*left:calc(20vw - 5px);*/
     background-color: chocolate;
     padding: 1vw;
     margin-bottom: 1vw;
@@ -19,18 +19,19 @@
     display: inline-block;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   }
-  
-  .links_filter_controls {
+
+.links_filter_controls {
     position: relative;
-    top:0px;
+    top: 0px;
     display: flex;
     width: 100%;
     height: 90%;
+    font-size: calc(12px + .2vw);
     /* Centering texts in a div: */
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-  }
+}
   
   .links_filter label {
     font-weight: bold;
@@ -39,13 +40,20 @@
     justify-content: center;
     align-items: center;
   }
-  
-  .links_filter select {
+
+.links_filter select {
     font: inherit;
     padding: 0.2rem 1rem;
+    color: darkred;
+    font-size: calc(12px + .2vw);
     font-weight: bold;
     border-radius: 6px;
     /* Centering texts in a div: */
     justify-content: center;
     align-items: center;
-  }
+}
+
+option {
+    font-size: calc(12px + .2vw);
+    font-weight: bold;
+}

@@ -1,8 +1,9 @@
-import React from "react";
 import './NewEntryForm_.css';
 import EntryInputForm from "./EntryInputForm";
+import { useState } from 'react';
 
 const NewEntryForm = (props) => {
+
     //Creates random string:
     const allCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-`;:!@#$%^&*?~[]{}<>_+=|"()';
     const randomString =  setLength  => {
@@ -48,9 +49,24 @@ const NewEntryForm = (props) => {
             }) /*then*/
     } //[writeNewEntryToJson]
 
+    // A hook for switching elements' visibility:
+    let [linkFormField, showLinkForm] = useState(false);
+    // Add link field elements handler:
+    const addLinksFieldHandler = () => {
+        setTimeout ( () => {
+            linkFormField === false ? linkFormField = true : linkFormField = false;
+            showLinkForm(linkFormField);
+            console.log('<<<<<<<<<<    addLinksFieldHandler    >>>>>>>>>>>>>');
+            console.log(linkFormField);
+        }, 150);  //[setTimeout]
+    }  //[addLinksFieldHandler]
+
     return (
         <div className="new-entry-form">
-            <EntryInputForm on_SaveNewEntry={saveNewEntryHandler} on_NewEntrySet={writeNewEntryToJson}  />
+            {!linkFormField && <button className="add_link_button"  onClick={addLinksFieldHandler}>Add new link</button> }
+            {linkFormField && <EntryInputForm on_SaveNewEntry={saveNewEntryHandler}
+                on_NewEntrySet={writeNewEntryToJson}
+                on_addLinksDone={addLinksFieldHandler} />}
         </div>
     );//[return]
 };//[fn]

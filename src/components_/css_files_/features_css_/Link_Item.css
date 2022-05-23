@@ -64,8 +64,9 @@
     border-style: solid;
     border-width: 0;
     border-radius: 5px;
+    font-size: calc(15px + .5vw);
     text-align: center;
-    display:inline-block; /*For older browsers*/
+    display: inline-block; /*For older browsers*/
     display: flex; /*Allows to center texts i n a div.*/
     /* Centering texts in a div: */
     justify-content: center;
