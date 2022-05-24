@@ -71,8 +71,8 @@ const EntryInputForm = (props) => {
                         onChange={(event)=>LinkDataHandler(event, 'link_date')} />
                     </div>
                     <div className="form_buttons">
-                        <button type="submit" onClick={props.on_addLinksDone}>Add</button>
-                        <button type="reset" onClick={props.on_addLinksDone}>Cancel</button>
+                        <button className="form_button" type="submit" onClick={props.on_addLinksDone}>Add</button>
+                        <button className="form_button" type="reset" onClick={props.on_addLinksDone}>Cancel</button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import './NewEntryForm_.css';
 import EntryInputForm from "./EntryInputForm";
 import { useState } from 'react';
+import axios from "axios";
 
 const NewEntryForm = (props) => {
 
@@ -28,25 +29,55 @@ const NewEntryForm = (props) => {
     };//[saveNewEntryHandler]
 
     // Writes to JSON:
-    const writeNewEntryToJson = () => {
+    //let [link_properties, setData] = useState([]);
+    const writeNewEntryToJson = newJsonEntry => {
         console.log('>>>>>>>>>>>>>> from writeNewEntryToJson <<<<<<<<<<<<<<<<<</');
+
+        console.log('>>>>>>>>>>>>>> from newJsonEntry <<<<<<<<<<<<<<<<<</');
+        console.log(newJsonEntry);
+
         fetch('user_links.json',
-            {
-                method: 'POST'
-                , headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }   /*headers*/
-            }
-        )   /*[fetch]*/
-            .then(resp => {
-                resp.json();
-                resp = JSON.parse(resp);
-            }
-        )
-            .then(jsonData => {
-                let updateArray = [...jsonData, entryDataSet];
-                console.log('//// from writeNewEntryToJson ////');
-                console.log(updateArray);
-                JSON.stringify(updateArray);
-            }) /*then*/
+           {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }/*headers*/)
+            .then((res) => res.json())
+            .then((data) => {
+                let jsonData = [...data];
+                //setData(jsonData);
+                let updateArray = JSON.stringify([...jsonData, newJsonEntry]);
+                console.log('>>>>>>>>>>>>> updateArray  >>  ' + updateArray);
+
+                axios.post('./user_links.json', { updateArray })
+                    .then(res => {
+                        console.log('>>>>>>>>>>>>> axios.post(`user_links.json`, { updateArray })  <<<<<<<<<<<<<');
+                        console.log(res);
+                        console.log(res.data);
+                    })
+            });
+
+        
+
+        //fetch('user_links.json',
+        //    {
+        //        method: 'POST'
+        //        , headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }   /*headers*/
+        //    }
+        //)   /*[fetch]*/
+        //    .then(resp => {
+        //        resp.json();
+        //        resp.header("Access-Control-Allow-Origin", "*");
+        //        resp.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        //    }
+        //)
+        //    .then(jsonData => {
+        //        let updateArray = [...jsonData, entryDataSet];
+        //        console.log('//// from writeNewEntryToJson ////');
+        //        console.log(updateArray);
+        //        JSON.stringify(updateArray);
+        //    }) /*then*/
     } //[writeNewEntryToJson]
 
     // A hook for switching elements' visibility:

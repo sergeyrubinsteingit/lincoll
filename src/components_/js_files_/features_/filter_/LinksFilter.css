@@ -45,6 +45,7 @@
     font: inherit;
     padding: 0.2rem 1rem;
     color: darkred;
+    background-color: rgb(253, 154, 72);
     font-size: calc(12px + .2vw);
     font-weight: bold;
     border-radius: 6px;
