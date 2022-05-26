@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import './../../css_files_/features_css_/Link_Item.css';
+import './../../../css_files_/features_css_/Link_Item.css';
 
 let current_status_ = 'NO';
 function LinkStatus(props){

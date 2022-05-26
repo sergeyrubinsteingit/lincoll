@@ -1,5 +1,5 @@
-import './../../css_files_/features_css_/Link_Item.css';
-import './../../css_files_/features_css_/EntryDate.css';
+import './../../../css_files_/features_css_/Link_Item.css';
+import './../../../css_files_/features_css_/EntryDate.css';
 
 function EntryDate(props){
     // Variables setting:

@@ -1,6 +1,6 @@
-import './../../css_files_/features_css_/Link_Item.css';
+import './../../../css_files_/features_css_/Link_Item.css';
 import EntryDate from './EntryDate.js';
-import Card from '../ui_/Card_';
+import Card from '../../ui_/Card_';
 import LinkStatus from './LinkStatus';
 
 function LinkItem(props) {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import LinkItem from './LinkItem';
-import './../../css_files_/App_.css';
-import LinksFilter from './filter_/LinksFilter';
-import './../../../App';
+import './../../../css_files_/App_.css';
+import LinksFilter from './../filter_/LinksFilter';
+import './../../../../App';
 
 let oper_array = [];
 let oper_array_2 = [];

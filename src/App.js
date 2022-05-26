@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './components_/css_files_/App_.css';
-import LinkEntries from './components_/js_files_/features_/LinkEntries';
+import LinkEntries from './components_/js_files_/features_/LinkEntries/LinkEntries';
 import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEntryForm';
+import Chart from './components_/js_files_/features_/Chart/Chart';
+import EntryChart from './components_/js_files_/features_/LinkEntries/EntryChart';
 // TEMP /////////////////////////////////////////////////
 //const DUMMY_LINKS =
 //    [
@@ -16,8 +18,8 @@ import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEn
 const App = (props) => {
     let [link_properties, setData] = useState([]);
 
+    let linksFromJson = [];
     React.useEffect(() => {     /* Brings in data from json where user info is stored:*/
-        let linksFromJson = [];
         fetch('./user_links.json',
             {
                 headers: {
@@ -45,8 +47,9 @@ const App = (props) => {
     }//[arrayHandler]
 
     return React.createElement('div', { className: 'app_wrapper_div' }, /*Wrapper div*/
-        React.createElement('h1', {}, 'Links Collector'), /* The Header */
+        React.createElement('h1', { className: 'app_name'}, 'Links Collector'), /* The Header */
         React.createElement(NewEntryForm, { on_AddLink: addLinkHandler }), /* A component holding input forms */
+        React.createElement(EntryChart, {linksFromJson}),  /*A component holding charts*/
         React.createElement(LinkEntries, { items_: link_properties, on_ChangeArray: arrayHandler }), /* A component populating entries */
     );// [ React.createElement: Wrapper div ]
 
