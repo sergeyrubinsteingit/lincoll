@@ -1,0 +1,25 @@
+ 
+[
+  
+  {  
+    "key": "1",
+    "link_date": "Sun Dec 26 2021 02:00:00 GMT+0200 (Israel Standard Time)",
+    "link_name":"DialogHR",
+    "link_url":"https://www.dialog.co.il/high-tech/searchresults/?fieldId=&professions=23565,93909,93911,23662&regions=1,2&skills=&salary=10000,15000&industry=&companySize=0&nearTrain=false",
+    "link_status": "NONE"
+  },
+  { 
+    "key": "2",
+    "link_date": "Wed Sep 22 2021 02:00:00 GMT+0200 (Israel Standard Time)",
+    "link_name":"Boxing Helmet",
+    "link_url":"https://www.aliexpress.com/item/32984890302.html?spm=a2g0o.search0304.0.0.2381655dzU51yF&algo_pvid=773f881f-2eed-4e68-8d9f-f6278d5623e4&algo_exp_id=773f881f-2eed-4e68-8d9f-f6278d5623e4-50",
+    "link_status":"NONE"
+  },
+  { 
+    "key": "3",
+    "link_date": "Fri Dec 31 2019 02:11:00 GMT+0200 (Israel Standard Time)",
+    "link_name":"TEMPORARY",
+    "link_url":"https://www.aliexpress.com/item/32984890302.html?spm=a2g0o.search0304.0.0.2381655dzU51yF&algo_pvid=773f881f-2eed-4e68-8d9f-f6278d5623e4&algo_exp_id=773f881f-2eed-4e68-8d9f-f6278d5623e4-50",
+    "link_status":"NONE"
+  }   
+]

@@ -1,9 +1,19 @@
 import './NewEntryForm_.css';
 import EntryInputForm from "./EntryInputForm";
-import { useState } from 'react';
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+//import axios from "axios";
+//import jsonFileData from './../../../../user_links.json'
+//import fs from 'fs';
+
 
 const NewEntryForm = (props) => {
+
+    //{     // Bringing Json data using [import]
+    //    jsonFileData && jsonFileData.map(jsonEntry => {
+    //        console.log('jsonEntry >>==>> ' + jsonEntry.link_date);
+    //        console.log('jsonFileData >>==>> ' + JSON.stringify(jsonFileData));
+    //    });
+    //}
 
     //Creates random string:
     const allCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-`;:!@#$%^&*?~[]{}<>_+=|"()';
@@ -17,6 +27,7 @@ const NewEntryForm = (props) => {
 
     // Receives new entry data:
     let entryDataSet = [];
+
     const saveNewEntryHandler = newEntryDataSet => {
         entryDataSet = {
             key: randomString(20),
@@ -24,60 +35,53 @@ const NewEntryForm = (props) => {
         } //[fn]
         console.log('================ entryDataSet ==============');
         console.log(entryDataSet);
+       
         props.on_AddLink(entryDataSet);
-        return entryDataSet;
+        return writeNewEntryToJson(entryDataSet);
     };//[saveNewEntryHandler]
 
     // Writes to JSON:
-    //let [link_properties, setData] = useState([]);
-    const writeNewEntryToJson = newJsonEntry => {
-        console.log('>>>>>>>>>>>>>> from writeNewEntryToJson <<<<<<<<<<<<<<<<<</');
+    function writeNewEntryToJson(newJsonEntry) {
+        //event.preventDefault();
 
-        console.log('>>>>>>>>>>>>>> from newJsonEntry <<<<<<<<<<<<<<<<<</');
-        console.log(newJsonEntry);
-
-        fetch('user_links.json',
-           {
+        fetch('./user_links.json',
+            {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
             }/*headers*/)
             .then((res) => res.json())
-            .then((data) => {
-                let jsonData = [...data];
-                //setData(jsonData);
-                let updateArray = JSON.stringify([...jsonData, newJsonEntry]);
-                console.log('>>>>>>>>>>>>> updateArray  >>  ' + updateArray);
+            .then((res2) => {
 
-                axios.post('./user_links.json', { updateArray })
-                    .then(res => {
-                        console.log('>>>>>>>>>>>>> axios.post(`user_links.json`, { updateArray })  <<<<<<<<<<<<<');
-                        console.log(res);
-                        console.log(res.data);
-                    })
+                setTimeout(() => {
+                            const dataToSend = {
+                                method: 'POST',
+                                mode: 'no-cors', // no-cors, cors, *same-origin
+                                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                                credentials: 'omit',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify([...res2, newJsonEntry]),
+                    };
+                    //console.log('=========== * [...res2, newJsonEntry] * =========\n' + JSON.stringify([...res2, newJsonEntry]))
+                    fetch('./user_links.json', dataToSend)
+                                .then(async response => {
+                                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                                    const data = isJson && await response.json();
+
+                                    // check for error response
+                                    if (!response.ok) {
+                                        // get error message from body or default to response status
+                                        const errorMsg = (data && data.message) || response.status;
+                                        console.error('\n###################\nRESPONCE FAILED\n', errorMsg, '\n###################\n');
+                                        //return Promise.reject(error);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('\n###################\nThere was an error!\n', error, '\n###################\n');
+                                });
+                 }, 500);
             });
-
-        
-
-        //fetch('user_links.json',
-        //    {
-        //        method: 'POST'
-        //        , headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }   /*headers*/
-        //    }
-        //)   /*[fetch]*/
-        //    .then(resp => {
-        //        resp.json();
-        //        resp.header("Access-Control-Allow-Origin", "*");
-        //        resp.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        //    }
-        //)
-        //    .then(jsonData => {
-        //        let updateArray = [...jsonData, entryDataSet];
-        //        console.log('//// from writeNewEntryToJson ////');
-        //        console.log(updateArray);
-        //        JSON.stringify(updateArray);
-        //    }) /*then*/
     } //[writeNewEntryToJson]
 
     // A hook for switching elements' visibility:
@@ -96,9 +100,10 @@ const NewEntryForm = (props) => {
         <div className="new-entry-form">
             {!linkFormField && <button className="add_link_button"  onClick={addLinksFieldHandler}>Add new link</button> }
             {linkFormField && <EntryInputForm on_SaveNewEntry={saveNewEntryHandler}
-                on_NewEntrySet={writeNewEntryToJson}
+                //on_NewEntrySet={writeNewEntryToJson}
                 on_addLinksDone={addLinksFieldHandler} />}
         </div>
-    );//[return]
-};//[fn]
+        );//[return]
+
+};//[NewEntryForm]
 export default NewEntryForm;

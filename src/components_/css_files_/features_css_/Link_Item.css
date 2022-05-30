@@ -14,9 +14,6 @@
     z-index: 0;
 }
 
-/* .link_item_root > * {
-} */
-
 .link_entry_date, .link_status_ {
     /* position: relative; */
     top: 50%;
@@ -64,7 +61,7 @@
     border-style: solid;
     border-width: 0;
     border-radius: 5px;
-    font-size: calc(15px + .5vw);
+    font-size: calc(10px + .3vw);
     text-align: center;
     display: inline-block; /*For older browsers*/
     display: flex; /*Allows to center texts i n a div.*/

@@ -1,11 +1,10 @@
 import React from 'react';
 import './ChartBar.css';
 
-let barFillDegree = '10%';
+let barFillDegree = '0%';
 const ChartBar = props => {
-    if (props.maximumValue > 0) {
-        barFillDegree = Math.round((props.chartDataPoints.value / props.maximumValue) * 100) + '%';
-        console.log('props.value -->  ' + props.chartDataPoints.value);
+    if (Object.values(props)[1] > 0) {
+        barFillDegree = Math.round((Object.values(props)[0] / Object.values(props)[1]) * 100) + '%' ;
         }   //[if]
 
         return <div className='chart-bar' >
