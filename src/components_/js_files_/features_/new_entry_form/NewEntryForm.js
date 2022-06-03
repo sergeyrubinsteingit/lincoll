@@ -1,13 +1,34 @@
 import './NewEntryForm_.css';
 import EntryInputForm from "./EntryInputForm";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 //import axios from "axios";
 //import jsonFileData from './../../../../user_links.json'
-//import fs from 'fs';
-
 
 const NewEntryForm = (props) => {
 
+    var getCookieName = document.cookie;
+    //window.alert('Cookie name: ' + getCookieName + '\nCookie length: ' + document.cookie.length);
+    console.log('Cookie name: ' + getCookieName + '\nCookie length: ' + document.cookie.length);
+
+    let cookieDict = {};
+    document.cookie.split(';').reduce((cookies, cookie) => {
+    const [name, value] = cookie.split('=').map(c => c.trim());
+    cookieDict = { ...cookies, [name]: value };
+    console.log('cookieDict: ' + JSON.stringify(cookieDict));
+    return cookieDict;
+    }, {});
+
+    //document.cookie.split(";")
+    //    .forEach(function (c) {
+    //        console.log('document.cookie = >> ' + document.cookie);
+    //        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    //    });
+
+    localStorage.setItem('myCat', 'Tom');
+    console.log(localStorage.getItem('myCat'));
+    var obj = { a: 1, b: 2 };
+    localStorage.setItem('./user_links.json', JSON.stringify(obj));
+    console.log(localStorage.getItem('./user_links.json'));
     //{     // Bringing Json data using [import]
     //    jsonFileData && jsonFileData.map(jsonEntry => {
     //        console.log('jsonEntry >>==>> ' + jsonEntry.link_date);
@@ -41,47 +62,58 @@ const NewEntryForm = (props) => {
     };//[saveNewEntryHandler]
 
     // Writes to JSON:
+    const pathToJson = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/user_links.json';
     function writeNewEntryToJson(newJsonEntry) {
-        //event.preventDefault();
-
-        fetch('./user_links.json',
+        fetch(pathToJson,
             {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'content-type': 'application/json',
+                    'accept': 'application/json'
                 }
-            }/*headers*/)
-            .then((res) => res.json())
+            }/*headers*/
+            )   /*fetch*/
+            .then((res) => res.json())   /*then*/
             .then((res2) => {
+                //    '====================================\n' +
+                //    'protocol: ' + window.location.protocol + '\n' +
+                //    'hostname: ' + window.location.hostname + '\n' +
+                //    'host: ' + window.location.host + '\n' +
+                //    'port: ' + window.location.port + '\n' +
+                //    '===================================='
+                //); 
+                     //setTimeout(() => {
+                fetch(pathToJson, {
+                    method: 'POST',
+                    mode: 'no-cors', // no-cors, cors, *same-origin
+                    //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    cache: "no-store",
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type' : 'text/plain;charset=UTF-8' /*'Content-Type': 'application/json'*//*, 'Accept': 'application/json'*/ },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify([...res2, newJsonEntry], null, 2),
+                })
+                    .then(async getResponse => {
+                        if (getResponse.status === 404) {
+                            console.log('Target not found');
+                            return false;
+                        }
+                            const isJson = getResponse.headers.get('content-type')?.includes('application/json');
+                            const responseData = isJson && await getResponse.json();
 
-                setTimeout(() => {
-                            const dataToSend = {
-                                method: 'POST',
-                                mode: 'no-cors', // no-cors, cors, *same-origin
-                                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                                credentials: 'omit',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify([...res2, newJsonEntry]),
-                    };
-                    //console.log('=========== * [...res2, newJsonEntry] * =========\n' + JSON.stringify([...res2, newJsonEntry]))
-                    fetch('./user_links.json', dataToSend)
-                                .then(async response => {
-                                    const isJson = response.headers.get('content-type')?.includes('application/json');
-                                    const data = isJson && await response.json();
-
-                                    // check for error response
-                                    if (!response.ok) {
-                                        // get error message from body or default to response status
-                                        const errorMsg = (data && data.message) || response.status;
-                                        console.error('\n###################\nRESPONCE FAILED\n', errorMsg, '\n###################\n');
-                                        //return Promise.reject(error);
-                                    }
-                                })
+                            // check for error response
+                            if (!getResponse.ok) {
+                                // get error message from body or default to response status
+                                const errorMsg = (responseData && responseData.message) || getResponse.status;
+                                console.error('\n###################\nRESPONCE FAILED\n', 'Error code: '+errorMsg, '\n###################\n');
+                                //return Promise.reject(errorMsg);
+                            }
+                        })   /*then*/
                                 .catch(error => {
                                     console.error('\n###################\nThere was an error!\n', error, '\n###################\n');
-                                });
-                 }, 500);
-            });
+                                });        /*catch*/
+                     //}, 1000);  //[setTimeout]
+            });        /*then*/
     } //[writeNewEntryToJson]
 
     // A hook for switching elements' visibility:

@@ -2,25 +2,15 @@ import React, { useState } from 'react';
 import './components_/css_files_/App_.css';
 import LinkEntries from './components_/js_files_/features_/LinkEntries/LinkEntries';
 import NewEntryForm from './components_/js_files_/features_/new_entry_form/NewEntryForm';
-import Chart from './components_/js_files_/features_/Chart/Chart';
 import EntryChart from './components_/js_files_/features_/LinkEntries/EntryChart';
-// TEMP /////////////////////////////////////////////////
-//const DUMMY_LINKS =
-//    [
-//        {
-//            "link_date": "2012-04-23T00:00:00.000Z",
-//            "item_name": "FROM APP",
-//            "link_to_item": "https://www.dialog.co.il/high-tech/searchresults/?fieldId=&professions=23565,93909,93911,23662&regions=1,2&skills=&salary=10000,15000&industry=&companySize=0&nearTrain=false",
-//            "lnk_status": "NONE",
-//        },
-//    ];
 
 const App = (props) => {
     let [link_properties, setData] = useState([]);
 
     let linksFromJson = [];
+    const pathToJson = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/user_links.json';
     React.useEffect(() => {     /* Brings in data from json where user info is stored:*/
-        fetch('./user_links.json',
+        fetch(pathToJson,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +43,9 @@ const App = (props) => {
         React.createElement(LinkEntries, { items_: link_properties, on_ChangeArray: arrayHandler }), /* A component populating entries */
     );// [ React.createElement: Wrapper div ]
 
-} //[App]                                           
+} //[App]             
+
+//alert('>>> App works <<<');
 
 export default App;
 
