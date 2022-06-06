@@ -1,10 +1,10 @@
 import './NewEntryForm_.css';
 import EntryInputForm from "./EntryInputForm";
 import React, { useState } from 'react';
-//import axios from "axios";
-//import jsonFileData from './../../../../user_links.json'
+import Request from 'react-http-request';
 
 const NewEntryForm = (props) => {
+    console.log(`Max HTTP Header size is ${Request.maxHeaderSize}`);
 
     var getCookieName = document.cookie;
     //window.alert('Cookie name: ' + getCookieName + '\nCookie length: ' + document.cookie.length);
@@ -66,13 +66,14 @@ const NewEntryForm = (props) => {
     function writeNewEntryToJson(newJsonEntry) {
         fetch(pathToJson,
             {
+                method: 'get',
                 headers: {
                     'content-type': 'application/json',
                     'accept': 'application/json'
                 }
             }/*headers*/
-            )   /*fetch*/
-            .then((res) => res.json())   /*then*/
+        )   /*fetch*/
+                .then((res) => res.json()   )   /*then*/
             .then((res2) => {
                 //    '====================================\n' +
                 //    'protocol: ' + window.location.protocol + '\n' +
@@ -80,18 +81,25 @@ const NewEntryForm = (props) => {
                 //    'host: ' + window.location.host + '\n' +
                 //    'port: ' + window.location.port + '\n' +
                 //    '===================================='
-                //); 
-                     //setTimeout(() => {
-                fetch(pathToJson, {
-                    method: 'POST',
-                    mode: 'no-cors', // no-cors, cors, *same-origin
-                    //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    cache: "no-store",
-                    credentials: 'same-origin',
-                    headers: { 'Content-Type' : 'text/plain;charset=UTF-8' /*'Content-Type': 'application/json'*//*, 'Accept': 'application/json'*/ },
-                    redirect: 'follow',
-                    referrerPolicy: 'no-referrer',
+                //);
+
+                fetch(  pathToJson, {
+                    method: 'post',
                     body: JSON.stringify([...res2, newJsonEntry], null, 2),
+                    mode: 'no-cors', // no-cors, cors, *same-origin
+                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    //cache: "no-store",
+                    credentials: 'same-origin',
+                        headers: {
+                            // 'Accept': 'application/json',
+                            'Host': window.location.host,
+                            //'Proxy-Connection' : 'keep-alive',
+                            //'Keep-Alive' : 'timeout=25, max=1000',
+                            'Content-Length': '160000',
+                            'Content-Type': 'application/json'
+                        },  /*Headers*/
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer'
                 })
                     .then(async getResponse => {
                         if (getResponse.status === 404) {
@@ -106,14 +114,15 @@ const NewEntryForm = (props) => {
                                 // get error message from body or default to response status
                                 const errorMsg = (responseData && responseData.message) || getResponse.status;
                                 console.error('\n###################\nRESPONCE FAILED\n', 'Error code: '+errorMsg, '\n###################\n');
-                                //return Promise.reject(errorMsg);
+                                throw new Error(`The HTTP status of the reponse:\n ${getResponse.status} (${getResponse.statusText})`);
                             }
                         })   /*then*/
                                 .catch(error => {
-                                    console.error('\n###################\nThere was an error!\n', error, '\n###################\n');
+                                    console.error('\n######################################\nERROR!\n', error, '\n######################################\n');
+                                    return false;
                                 });        /*catch*/
-                     //}, 1000);  //[setTimeout]
-            });        /*then*/
+                });        /*then*/
+            
     } //[writeNewEntryToJson]
 
     // A hook for switching elements' visibility:
@@ -123,8 +132,7 @@ const NewEntryForm = (props) => {
         setTimeout ( () => {
             linkFormField === false ? linkFormField = true : linkFormField = false;
             showLinkForm(linkFormField);
-            console.log('<<<<<<<<<<    addLinksFieldHandler    >>>>>>>>>>>>>');
-            console.log(linkFormField);
+            console.log('<<<<<<<<<<    addLinksFieldHandler    >>>>>>>>>>>>>\n' + linkFormField);
         }, 150);  //[setTimeout]
     }  //[addLinksFieldHandler]
 

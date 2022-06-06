@@ -6,14 +6,16 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
+    "node-modules": "^1.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.0.0",
+    "react-http-request": "^2.0.0",
     "react-scripts": "5.0.1",
     "rn-nodeify": "^10.3.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=127.0.0.1:8080 && react-scripts --max-http-header-size=16000 start",
+    "start": "set PORT=8080 && react-scripts --max-http-header-size=16384 start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
