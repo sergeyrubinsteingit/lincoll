@@ -6,11 +6,7 @@ let current_status_ = 'NO';
 function LinkStatus(props){
     const [lnk_status_, setStatus_] = useState(props.link_status);
     const StatusHandler = () => {
-        if(current_status_ === 'NO'){
-            current_status_ = 'YES';
-        } else {
-            current_status_ = 'NO';
-        } //[if]
+        current_status_ === 'NO' ? current_status_ = 'YES' : current_status_ = 'NO';
         setStatus_(current_status_);
         return current_status_;
     } ;//[fn]

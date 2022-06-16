@@ -56,12 +56,15 @@ function LinkEntries(props) {
     // Settings for LinkItem content - conditional:
     let openArrayContent = <center><p style={{ fontSize: '2em', color: 'darkred' }}>No links for selected date</p></center>; /* In case there is no link entries for selected year*/
     if (oper_array.length > 0) {    /*If there are some entries for selected year*/
-            openArrayContent = oper_array.map(new_entry => <LinkItem  /*Mapping LinkItem properties*/
+        openArrayContent = oper_array.map(new_entry =>
+            <LinkItem  /*Mapping LinkItem properties*/
                 key={new_entry.key}
                 link_date={new_entry.link_date}
                 link_name={new_entry.link_name}
                 link_url={new_entry.link_url}
-                link_status={new_entry.link_status} />)  //[map]
+                link_status={new_entry.link_status}
+                onDelete={props.onDeleteItem}
+            />      /*LinkItem*/    )  //[map]
     }; //[if]
 
     return (

@@ -1,14 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
     "\\src\\components_",
     "\\src\\components_\\js_files_",
     "\\src\\components_\\js_files_\\features_",
     "\\src\\components_\\js_files_\\features_\\LinkEntries",
-    "\\src\\components_\\js_files_\\features_\\new_entry_form",
-    "\\work_files"
+    "\\src\\components_\\js_files_\\features_\\new_entry_form"
   ],
   "SelectedNode": "\\src\\components_\\js_files_\\features_\\new_entry_form\\NewEntryForm.js",
   "PreviewInSolutionExplorer": false

@@ -6,20 +6,20 @@
     "link_date": "Sun Dec 26 2021 02:00:00 GMT+0200 (Israel Standard Time)",
     "link_name":"DialogHR",
     "link_url":"https://www.dialog.co.il",
-    "link_status": "Set status"
+    "link_status": "NONE"
   },
-  {
+  { 
     "key": "2",
     "link_date": "Wed Sep 22 2021 02:00:00 GMT+0200 (Israel Standard Time)",
-    "link_name": "Boxing Helmet",
-    "link_url": "https://www.aliexpress.com/item/32984890302.html",
-    "link_status": "Set status"
+    "link_name":"Boxing Helmet",
+    "link_url":"https://www.aliexpress.com/item/32984890302.html",
+    "link_status":"NONE"
   },
-  {
+  { 
     "key": "3",
     "link_date": "Fri Dec 31 2019 02:11:00 GMT+0200 (Israel Standard Time)",
-    "link_name": "TEMPORARY",
-    "link_url": "https://www.aliexpress.com/item/32984890302.html",
-    "link_status": "Set status"
+    "link_name":"TEMPORARY",
+    "link_url":"https://www.aliexpress.com/item/32984890302.html",
+    "link_status":"NONE"
   }   
 ]

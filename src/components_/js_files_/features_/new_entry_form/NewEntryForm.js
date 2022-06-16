@@ -2,6 +2,9 @@ import './NewEntryForm_.css';
 import EntryInputForm from "./EntryInputForm";
 import React, { useState } from 'react';
 import Request from 'react-http-request';
+//import { writeJsonFile } from './../../../../write-json-file';
+//import jsonData from './../../../../user_links_2_.json';
+
 
 const NewEntryForm = (props) => {
     console.log(`Max HTTP Header size is ${Request.maxHeaderSize}`);
@@ -64,12 +67,17 @@ const NewEntryForm = (props) => {
     // Writes to JSON:
     const pathToJson = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/user_links.json';
     function writeNewEntryToJson(newJsonEntry) {
+
+    //    //writeJsonFile('user_links_2_.json', newJsonEntry, { user_links_2_: true });
+    //    jsonData.map(jsonEntries => { console.log( 'jsonEntries = ' + jsonEntries); });
+
         fetch(pathToJson,
             {
                 method: 'get',
                 headers: {
                     'content-type': 'application/json',
-                    'accept': 'application/json'
+                    'accept': 'application/json',
+                    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36'
                 }
             }/*headers*/
         )   /*fetch*/
@@ -89,14 +97,19 @@ const NewEntryForm = (props) => {
                     mode: 'no-cors', // no-cors, cors, *same-origin
                     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                     //cache: "no-store",
-                    credentials: 'same-origin',
-                        headers: {
-                            // 'Accept': 'application/json',
+                    //credentials: 'omit',
+                    headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Accept-Post': '*/*',
+                            'Accept-Language': 'en-US, en',
                             'Host': window.location.host,
-                            //'Proxy-Connection' : 'keep-alive',
-                            //'Keep-Alive' : 'timeout=25, max=1000',
-                            'Content-Length': '160000',
-                            'Content-Type': 'application/json'
+                            'Content-Length': '80',
+                            'Cache-Control': 's-maxage=0, public, no-store',
+                            'Age' : 1000,
+                            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+                            'sec-ch-ua': 'Not A',
+                            'Accept-Encoding': 'gzip'
                         },  /*Headers*/
                     redirect: 'follow',
                     referrerPolicy: 'no-referrer'
